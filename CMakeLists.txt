@@ -328,3 +328,12 @@ if(UNIX AND
    CMAKE_GENERATOR STREQUAL "Ninja")
   add_definitions(-fcolor-diagnostics)
 endif()
+
+get_directory_property(has_parent PARENT_DIRECTORY)
+if(has_parent)
+  get_target_property(jpetmlem_include 3d_tool_convert INCLUDE_DIRECTORIES)
+  set(MLEM_INCLUDE_DIRS
+    ${jpetmlem_include}
+    PARENT_SCOPE
+    )
+endif()
