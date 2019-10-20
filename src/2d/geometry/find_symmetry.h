@@ -52,7 +52,6 @@ bool fill_symmetry_descriptor(
     Scanner scanner,
     typename Scanner::F epsilon) {
   using S = typename Scanner::S;
-  using F = typename Scanner::F;
 
   for (S d = 0; d < scanner.size(); d++) {
     for (S s = 0; s < descriptor.n_symmetries; s++) {

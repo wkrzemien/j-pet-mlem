@@ -91,7 +91,6 @@ template <typename F> struct intersection_result {
 template <typename F>
 intersection_result<F> intersect(const Ray<F>& ray, const Box<F>& box) {
   using Vector = PET3D::Vector<F>;
-  using Point = PET3D::Point<F>;
 
   F t_min = std::numeric_limits<F>::lowest();
   F t_max = std::numeric_limits<F>::max();

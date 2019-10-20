@@ -19,7 +19,6 @@ template <class ScannerClass> class ScannerBuilder {
   using Vector = PET2D::Vector<F>;
 
   static Scanner deserialize(std::istream& in) {
-    using Point = PET2D::Point<F>;
     Scanner detector_set(1, 1, 0);
     std::string line;
     while (std::getline(in, line)) {
