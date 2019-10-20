@@ -16,6 +16,16 @@ namespace Strip {
 namespace GPU {
 namespace Reconstruction {
 
+template <typename F>
+__device__ inline int n_pixels_in_line(F length, F pixel_size);
+
+template <typename F>
+__device__ inline Pixel warp_space_pixel(int offset,
+                                         Pixel tl,
+                                         int width,
+                                         F inv_width,
+                                         int& index);
+
 template <template <typename Float> class Kernel, typename F>
 __global__ void reconstruction(Scanner<F, short> scanner,
                                F* responses_z_u,
