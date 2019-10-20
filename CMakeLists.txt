@@ -124,6 +124,11 @@ if(CUDA_FOUND)
     -gencode arch=compute_52,code=compute_52 # GTX 980Ti
     -gencode arch=compute_30,code=compute_30 # GTX 770
     -std=c++11)
+  if(NOT CUDA_VERSION VERSION_LESS 9.0)
+    list(APPEND CUDA_NVCC_FLAGS
+      -Xcudafe --diag_suppress=esa_on_defaulted_function_ignored
+      -Wno-deprecated-declarations)
+  endif()
   list(APPEND CUDA_NVCC_FLAGS_RELEASE
     -Xptxas -O3,-lineinfo
     --use_fast_math)
