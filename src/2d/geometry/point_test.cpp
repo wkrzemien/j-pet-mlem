@@ -8,7 +8,6 @@ TEST("Transforming and comparing points") {
 
   using Point = PET2D::Point<F>;
   using Transformation = PET2D::Transformation<F>;
-  using Vector = typename Point::Vector;
 
   Point p(0, 1);
   Point q(0, 1);

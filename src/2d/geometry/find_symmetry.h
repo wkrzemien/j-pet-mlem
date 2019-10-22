@@ -9,6 +9,7 @@ PET2D::Transformation<F> symmetry_transformation(S symmetry) {
 
   using Vector = typename Transformation::Vector;
   switch (symmetry) {
+    default:
     case 0:
       return Transformation();
     case 1:
@@ -29,17 +30,16 @@ PET2D::Transformation<F> symmetry_transformation(S symmetry) {
 }
 
 template <typename Scanner>
-typename Scanner::S find_symmetric(Scanner scanner,
-                                   typename Scanner::S symmetry,
-                                   typename Scanner::S detector,
-                                   typename Scanner::F epsilon) {
+size_t find_symmetric(Scanner scanner,
+                      typename Scanner::S symmetry,
+                      typename Scanner::S detector,
+                      typename Scanner::F epsilon) {
   using F = typename Scanner::F;
-  using S = typename Scanner::S;
 
   auto t = symmetry_transformation<F>(symmetry);
   auto t_detector = scanner[detector].transformed(t);
 
-  for (S d = 0; d < scanner.size(); d++) {
+  for (size_t d = 0; d < scanner.size(); d++) {
     if (t_detector.approx_equal_dihedral(scanner[d], epsilon))
       return d;
   }
@@ -53,7 +53,7 @@ bool fill_symmetry_descriptor(
     typename Scanner::F epsilon) {
   using S = typename Scanner::S;
 
-  for (S d = 0; d < scanner.size(); d++) {
+  for (size_t d = 0; d < scanner.size(); d++) {
     for (S s = 0; s < descriptor.n_symmetries; s++) {
       auto symmetric = find_symmetric(scanner, s, d, epsilon);
       if (symmetric < 0)

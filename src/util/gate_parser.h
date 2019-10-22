@@ -46,13 +46,11 @@ class Parser {
     }
 
     start++;
-    bool another_command = true;
     while (1) {
       auto next_backslash = input.find_first_of("/ \t\n", start);
       if (next_backslash == std::string::npos) {
         fprintf(stderr, "`%s' is not a gate command ", input.c_str());
         chain.is_valid_ = false;
-        another_command = false;
         return std::string::npos;
       }
       auto command = input.substr(start, next_backslash - start);

@@ -40,6 +40,8 @@ int main(int argc, char* argv[]) {
     world = Gate::D2::build_new_full_scanner_volume<F>();
   } else if (cl.exist("ideal")) {
     world = Gate::D2::build_ideal_scanner_volume<F>();
+  } else {
+    throw("you need to select one of: big-barrel, full, new-module");
   }
 
   const int n_detectors = Gate::D2::count_cristals<F, S>(world);

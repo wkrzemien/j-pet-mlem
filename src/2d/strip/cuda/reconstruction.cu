@@ -115,8 +115,8 @@ void run(Scanner<F, S>& scanner,
 template <typename F>
 void fill_with_sensitivity(F* sensitivity, Scanner<F, S>& scanner) {
 
-  size_t width = scanner.n_z_pixels;
-  size_t height = scanner.n_y_pixels;
+  const int width = scanner.n_z_pixels;
+  const int height = scanner.n_y_pixels;
 
   for (int y = 0; y < height; ++y) {
     for (int x = 0; x < width; ++x) {

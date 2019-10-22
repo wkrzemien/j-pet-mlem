@@ -209,7 +209,6 @@ static void run(cmdline::parser& cl, ModelArgs... args) {
 
   ModelClass model(args...);
 
-  auto n_detectors = scanner.size();
   auto& n_pixels = cl.get<int>("n-pixels");
   auto& m_pixel = cl.get<int>("m-pixel");
   auto& s_pixel = cl.get<double>("s-pixel");

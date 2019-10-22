@@ -83,7 +83,7 @@ template <typename F, typename S, int MAX_VOLUMES = 2 << 9> class Scanner {
     util::array<MAX_VOLUMES, intersection_t> intersected_volumes_;
     int hits = 0;
 
-    for (int i = 0; i < volumes_.size(); i++) {
+    for (size_t i = 0; i < volumes_.size(); i++) {
       auto v = volumes_[i];
       auto hit = v->intersects_with(ray);
       if (hit.intersected) {

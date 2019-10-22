@@ -115,10 +115,8 @@ using Pixel = PET2D::Pixel<S>;
 using LOR = PET2D::Barrel::LOR<S>;
 using Matrix = PET2D::Barrel::SparseMatrix<Pixel, LOR, Hit>;
 
-static void run_with_geometry(cmdline::parser& cl,
-                              int argc,
-                              Geometry& geometry);
-static void run_with_matrix(cmdline::parser& cl, int argc, Matrix& matrix);
+static void run_with_geometry(cmdline::parser& cl, Geometry& geometry);
+static void run_with_matrix(cmdline::parser& cl, Matrix& matrix);
 static void run_reconstruction(cmdline::parser& cl,
                                Reconstruction::Scanner& scanner,
                                Reconstruction::Grid& grid,
@@ -245,7 +243,7 @@ int main(int argc, char* argv[]) {
     util::ibstream in_geometry(cl.get<std::string>("geometry"));
     ENSURE_IS_OPEN(in_geometry, "geometry", cl.get<std::string>("geometry"));
     Geometry geometry(in_geometry);
-    run_with_geometry(cl, argc, geometry);
+    run_with_geometry(cl, geometry);
   }
   // 3D reconstruction using system matrix only
   else if (cl.exist("system")) {
@@ -260,7 +258,7 @@ int main(int argc, char* argv[]) {
       matrix_cfg.close();
       cmdline::load(cl, matrix_name, matrix_base_name + ".cfg");
     }
-    run_with_matrix(cl, argc, matrix);
+    run_with_matrix(cl, matrix);
   }
   // bail out if no geometry or system matrix is given
   else {
@@ -278,9 +276,7 @@ int main(int argc, char* argv[]) {
   CMDLINE_CATCH
 }
 
-static void run_with_geometry(cmdline::parser& cl,
-                              int argc,
-                              Geometry& geometry) {
+static void run_with_geometry(cmdline::parser& cl, Geometry& geometry) {
   // FIXME: this is very very stupid way to set argument manually, so cmdline
   // thinks it was provided via command line, but in fact we load it from
   // geometry file
@@ -363,7 +359,7 @@ static void run_with_geometry(cmdline::parser& cl,
   run_reconstruction(cl, scanner, grid, geometry_soa);
 }
 
-static void run_with_matrix(cmdline::parser& cl, int argc, Matrix& matrix) {
+static void run_with_matrix(cmdline::parser& cl, Matrix& matrix) {
   if (matrix.triangular()) {
     throw(
         "matrix must be in full form, "

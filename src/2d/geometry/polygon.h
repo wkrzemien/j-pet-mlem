@@ -32,7 +32,7 @@ class Polygon : public util::array<NumPoints, Point<FType>> {
     return *this;
   }
 
-  Polygon& transformed(Transformation tr) {
+  Polygon transformed(Transformation tr) {
     Polygon tmp(*this);
     return tmp.transform(tr);
   }
@@ -148,7 +148,7 @@ class Polygon : public util::array<NumPoints, Point<FType>> {
 
   bool approx_equal_circular(const Polygon& rhs, F epsilon = 1e-5) {
     Polygon p(rhs);
-    for (int i = 0; i < rhs.size(); i++) {
+    for (size_t i = 0; i < rhs.size(); i++) {
       std::rotate(p.begin(), p.begin() + 1, p.end());
       if (approx_equal(p, epsilon))
         return true;

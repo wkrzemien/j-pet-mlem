@@ -10,7 +10,10 @@ namespace D2 {
 template <typename FType, typename SType> class GateMacrosInterpreter {
  public:
   using F = FType;
-  void interpret(const std::istream& macro){};
+  void interpret(const std::istream& macro) {
+    // FIXME: provide implementation
+    (void)macro;  // mark as used (for now)
+  }
   Gate::D2::Volume<F>* volume() { return new Gate::D2::Box<F>(2.0, 1.0); };
 };
 }

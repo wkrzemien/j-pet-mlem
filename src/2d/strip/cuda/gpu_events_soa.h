@@ -20,7 +20,7 @@ template <typename FType> struct ResponsesSOA {
     F* cpu_dl = new F[n_responses];
 
     // fill CPU side SOA
-    for (int i = 0; i < n_responses; ++i) {
+    for (size_t i = 0; i < n_responses; ++i) {
       cpu_z_u[i] = source[i].z_u;
       cpu_z_d[i] = source[i].z_d;
       cpu_dl[i] = source[i].dl;

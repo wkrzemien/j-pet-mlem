@@ -82,7 +82,7 @@ template <typename FType> class Volume {
   using VolumeList = std::list<Volume*>;
   using Transformation = PET2D::Transformation<F>;
 
-  Volume() : is_sd_(false), transformation_(new Transformation()) {}
+  Volume() : transformation_(new Transformation()), is_sd_(false) {}
 
   bool is_sd() const { return is_sd_; }
 
@@ -130,7 +130,6 @@ template <typename FType> class Volume {
   std::unique_ptr<Repeater<F>> repeater_;
   // Material
   std::unique_ptr<Transformation> transformation_;
-
   bool is_sd_;
 };
 

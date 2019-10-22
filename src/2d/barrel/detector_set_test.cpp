@@ -29,7 +29,7 @@ TEST("Serialise") {
     std::ifstream in(name);
     auto scanner_copy = Builder::deserialize(in);
 
-    for (int d = 0; d < scanner.size(); d++) {
+    for (size_t d = 0; d < scanner.size(); d++) {
       REQUIRE(scanner[d].approx_equal_dihedral(scanner_copy[d], 1e-5));
     }
     in.close();
@@ -56,7 +56,7 @@ TEST("Serialise") {
         PET2D::Barrel::SymmetryDescriptor<S>::deserialize(in_s));
     in_s.close();
     std::remove(name_s.c_str());
-    for (int d = 0; d < scanner.size(); d++) {
+    for (size_t d = 0; d < scanner.size(); d++) {
       REQUIRE(scanner[d].approx_equal_dihedral(scanner_copy[d], 1e-5));
     }
     auto descriptor_copy = scanner_copy.symmetry_descriptor();

@@ -349,7 +349,7 @@ TEST("old multi ring") {
                                                                   0.021);
 
     for (S s = 0; s < 8; s++) {
-      for (S d = 0; d < scanner.size(); d++) {
+      for (size_t d = 0; d < scanner.size(); d++) {
         REQUIRE(s_descriptor.symmetric_detector(d, s) ==
                 ref_scanner.symmetry_descriptor().symmetric_detector(d, s));
       }
