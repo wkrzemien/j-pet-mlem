@@ -73,7 +73,7 @@ endif()
 
 # enable C++11 and warnings
 if(NOT MSVC)
-  add_definitions(-std=c++11 -Wall -Wunused-parameter -Wno-comment)
+  add_definitions(-std=c++1y -Wall -Wunused-parameter -Wno-comment)
   set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -g")
   if(WIN32)
     add_definitions(-D_USE_MATH_DEFINES)
@@ -123,7 +123,7 @@ if(CUDA_FOUND)
     -gencode arch=compute_62,code=compute_62 # GTX 1080
     -gencode arch=compute_52,code=compute_52 # GTX 980Ti
     -gencode arch=compute_30,code=compute_30 # GTX 770
-    -std=c++11)
+    -std=c++1y)
   if(NOT CUDA_VERSION VERSION_LESS 9.0)
     list(APPEND CUDA_NVCC_FLAGS
       -Xcudafe --diag_suppress=esa_on_defaulted_function_ignored
